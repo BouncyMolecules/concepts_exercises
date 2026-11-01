@@ -25,7 +25,14 @@
 // An empty array gives 0.
 //   sumOfEvens([1, 2, 3, 4]) -> 6
 // ---------------------------------------------------------------------
-function sumOfEvens(numbers) {
+function sumOfEvens(numbers) { 
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] % 2 === 0) {
+            sum = sum + numbers[i];
+        }
+    }
+    return sum;
 }
 
 
@@ -36,7 +43,26 @@ function sumOfEvens(numbers) {
 // Any other number gives "Invalid".
 //   dayName(3) -> "Wednesday"
 // ---------------------------------------------------------------------
-function dayName(dayNumber) {
+function dayName(dayNumber) { 
+    switch (dayNumber) {
+        case 1:
+            return "Monday";
+        case 2:
+            return "Tuesday";
+        case 3:
+            return "Wednesday";
+        case 4:
+            return "Thursday";
+        case 5:
+            return "Friday";
+        case 6:
+            return "Saturday";
+        case 7:
+            return "Sunday";
+        
+        default:
+            return "Invalid";
+    }
 }
 
 

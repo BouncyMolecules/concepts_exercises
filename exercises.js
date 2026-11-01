@@ -152,8 +152,21 @@ function isPalindrome(word) {
 //             ***
 // ---------------------------------------------------------------------
 function buildTriangle(height) {
-}
+    if (height <= 0) {
+        return "";
+    }
 
+    let result = "";
+    for (let i = 1; i <= height; i++) {
+        for (let j = 1; j <= i; j++) {
+            result += "*";
+        }
+        if (i < height) {
+            result += "\n";
+        }
+    }
+    return result;
+}
 
 // ---------------------------------------------------------------------
 // Exercise 7: countWeekendDays

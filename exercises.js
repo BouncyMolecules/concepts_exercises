@@ -175,6 +175,14 @@ function buildTriangle(height) {
 //   countWeekendDays([1, 6, 7, 3]) -> 2
 // ---------------------------------------------------------------------
 function countWeekendDays(dayNumbers) {
+    let count = 0;
+    for (let i = 0; i < dayNumbers.length; i++) {
+        const day = dayName(dayNumbers[i]);
+        if (day === "Saturday" || day === "Sunday") {
+            count++;
+        }
+    }
+    return count;
 }
 
 
@@ -185,6 +193,17 @@ function countWeekendDays(dayNumbers) {
 //   pointsToGrade(85) -> 2
 // ---------------------------------------------------------------------
 function pointsToGrade(points) {
+    if (points >= 90) {
+        return 1;
+    } else if (points >= 80) {
+        return 2;
+    } else if ( points >= 65) {
+        return 3;
+    } else if ( points >= 50) {
+        return 4;
+    } else {
+        return 5;
+    }
 }
 
 
@@ -197,6 +216,28 @@ function pointsToGrade(points) {
 //       5 Insufficient
 // ---------------------------------------------------------------------
 function gradeReport(student) {
+    const grade = pointsToGrade(student.points);
+    let gradeText;
+
+    switch (grade) {
+        case 1:
+            gradeText = "Excellent";
+            break;
+        case 2:
+            gradeText = "Good";
+            break;
+        case 3:
+            gradeText = "Satisfactory";
+            break;
+        case 4:
+            gradeText = "Sufficient";
+            break;
+        case 5:
+            gradeText = "Insufficient";
+            break;
+    }
+
+    return `${student.name}: ${grade} (${gradeText})`;
 }
 
 
@@ -208,8 +249,30 @@ function gradeReport(student) {
 // (rock beats scissors, scissors beats paper, paper beats rock)
 //   rockPaperScissors("rock", "paper") -> "Player 2 wins"
 // ---------------------------------------------------------------------
-function rockPaperScissors(choice1, choice2) {
+function isValid(choice) {
+    return choice === "rock" || choice === "paper" || choice === "scissors";
 }
+
+function rockPaperScissors(choice1, choice2) {
+    if (!isValid(choice1) || !isValid(choice2)) {
+        return "Invalid input";
+    }
+
+    if (choice1 === choice2) {
+        return "Draw";
+    }
+
+    if (
+        (choice1 === "rock" && choice2 === "scissors") ||
+        (choice1 === "scissors" && choice2 === "paper") ||
+        (choice1 === "paper" && choice2 === "rock")
+    ) {
+        return "Player 1 wins";
+    } else {
+        return "Player 2 wins";
+    }
+}
+
 
 
 // ---------------------------------------------------------------------
@@ -219,6 +282,21 @@ function rockPaperScissors(choice1, choice2) {
 // highest age, return the one that comes first. Empty array gives "".
 // ---------------------------------------------------------------------
 function findOldest(people) {
+    if (people.length === 0) {
+        return "";
+    }
+
+    let oldestName = people[0].name;
+    let oldestAge = people[0].age;
+
+    for (let i = 1; i < people.length; i++) {
+        if (people[i].age > oldestAge) {
+            oldestAge = people[i].age;
+            oldestName = people[i].name;
+        }
+    }
+
+    return oldestName;
 }
 
 
